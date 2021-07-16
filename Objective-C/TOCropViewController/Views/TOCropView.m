@@ -1161,7 +1161,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 {
     if (_translucencyAlwaysHidden == translucencyAlwaysHidden) { return; }
     _translucencyAlwaysHidden = translucencyAlwaysHidden;
-    self.translucencyView.hidden = _translucencyAlwaysHidden;
+//    self.translucencyView.hidden = _translucencyAlwaysHidden;
 }
 
 - (void)setGridOverlayHidden:(BOOL)gridOverlayHidden
