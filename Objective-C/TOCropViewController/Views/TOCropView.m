@@ -189,21 +189,21 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     [self addSubview:self.overlayView];
     
     //Translucency View
-    if (NSClassFromString(@"UIVisualEffectView")) {
-        self.translucencyEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-        self.translucencyView = [[UIVisualEffectView alloc] initWithEffect:self.translucencyEffect];
-        self.translucencyView.frame = self.bounds;
-    }
-    else {
-        UIToolbar *toolbar = [[UIToolbar alloc] init];
-        toolbar.barStyle = UIBarStyleBlack;
-        self.translucencyView = toolbar;
-        self.translucencyView.frame = CGRectInset(self.bounds, -1.0f, -1.0f);
-    }
-    self.translucencyView.hidden = self.translucencyAlwaysHidden;
-    self.translucencyView.userInteractionEnabled = NO;
-    self.translucencyView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self addSubview:self.translucencyView];
+//    if (NSClassFromString(@"UIVisualEffectView")) {
+//        self.translucencyEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+//        self.translucencyView = [[UIVisualEffectView alloc] initWithEffect:self.translucencyEffect];
+//        self.translucencyView.frame = self.bounds;
+//    }
+//    else {
+//        UIToolbar *toolbar = [[UIToolbar alloc] init];
+//        toolbar.barStyle = UIBarStyleBlack;
+//        self.translucencyView = toolbar;
+//        self.translucencyView.frame = CGRectInset(self.bounds, -1.0f, -1.0f);
+//    }
+//    self.translucencyView.hidden = self.translucencyAlwaysHidden;
+//    self.translucencyView.userInteractionEnabled = NO;
+//    self.translucencyView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//    [self addSubview:self.translucencyView];
     
     // The forground container that holds the foreground image view
     self.foregroundContainerView = [[UIView alloc] initWithFrame:(CGRect){0,0,200,200}];
@@ -749,15 +749,15 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     });
 }
 
-- (void)toggleTranslucencyViewVisible:(BOOL)visible
-{
-    if (self.dynamicBlurEffect == NO) {
-        self.translucencyView.alpha = visible ? 1.0f : 0.0f;
-    }
-    else {
-        [(UIVisualEffectView *)self.translucencyView setEffect:visible ? self.translucencyEffect : nil];
-    }
-}
+//- (void)toggleTranslucencyViewVisible:(BOOL)visible
+//{
+//    if (self.dynamicBlurEffect == NO) {
+//        self.translucencyView.alpha = visible ? 1.0f : 0.0f;
+//    }
+//    else {
+//        [(UIVisualEffectView *)self.translucencyView setEffect:visible ? self.translucencyEffect : nil];
+//    }
+//}
 
 - (void)updateToImageCropFrame:(CGRect)imageCropframe
 {
@@ -1115,7 +1115,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
         self.foregroundContainerView.alpha = alpha;
         self.gridOverlayView.alpha = alpha;
 
-        [self toggleTranslucencyViewVisible:!hidden];
+    //    [self toggleTranslucencyViewVisible:!hidden];
         
         return;
     }
@@ -1124,7 +1124,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     self.backgroundImageView.alpha = alpha;
     
     [UIView animateWithDuration:0.4f animations:^{
-        [self toggleTranslucencyViewVisible:!hidden];
+    //    [self toggleTranslucencyViewVisible:!hidden];
         self.gridOverlayView.alpha = alpha;
     }];
 }
@@ -1260,7 +1260,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     }
     
     if (animated == NO) {
-        [self toggleTranslucencyViewVisible:!editing];
+    //    [self toggleTranslucencyViewVisible:!editing];
         return;
     }
     
@@ -1272,7 +1272,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     }
     
     [UIView animateKeyframesWithDuration:duration delay:delay options:0 animations:^{
-        [self toggleTranslucencyViewVisible:!editing];
+ //       [self toggleTranslucencyViewVisible:!editing];
     } completion:nil];
 }
 
@@ -1379,13 +1379,13 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     self.editing = NO;
     
     if (animated == NO) {
-        [self toggleTranslucencyViewVisible:!simpleMode];
+//        [self toggleTranslucencyViewVisible:!simpleMode];
         
         return;
     }
     
     [UIView animateWithDuration:0.25f animations:^{
-        [self toggleTranslucencyViewVisible:!simpleMode];
+  //      [self toggleTranslucencyViewVisible:!simpleMode];
     }];
 }
 
@@ -1645,7 +1645,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
         
         self.backgroundContainerView.hidden = YES;
         self.foregroundContainerView.hidden = YES;
-        self.translucencyView.hidden = YES;
+//        self.translucencyView.hidden = YES;
         self.gridOverlayView.hidden = YES;
         
         [UIView animateWithDuration:0.45f delay:0.0f usingSpringWithDamping:1.0f initialSpringVelocity:0.8f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
@@ -1658,8 +1658,8 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
             self.translucencyView.hidden = self.translucencyAlwaysHidden;
             self.gridOverlayView.hidden = NO;
             
-            self.backgroundContainerView.alpha = 0.0f;
-            self.gridOverlayView.alpha = 0.0f;
+//            self.backgroundContainerView.alpha = 0.0f;
+//            self.gridOverlayView.alpha = 0.0f;
             
             self.translucencyView.alpha = 1.0f;
             
